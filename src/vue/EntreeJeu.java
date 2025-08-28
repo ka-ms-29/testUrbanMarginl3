@@ -1,5 +1,6 @@
 package vue;
 import java.awt.EventQueue;
+import controleur.Controle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,12 +26,12 @@ public class EntreeJeu extends JFrame {
 	 */
 	private JTextField txtIp;
 
+	private Controle controle;
 	/**
 	 * clic sur le bouton Start pour lancer le serveur
 	 */
 	private void btnStart_clic() {
-		(new Arene()).setVisible(true);
-		this.dispose();
+		this.controle.evenementEntreeJeu("serveur");
 	}
 	/**
 	 * clic sur le bouton Exit pour arrêter l'application
@@ -43,13 +44,12 @@ public class EntreeJeu extends JFrame {
 	 * clic sur le bouton Connect pour se connecter à un serveur
 	 */
 	private void btnConnect_clic() {
-		(new ChoixJoueur()).setVisible(true);
-		this.dispose();
+		this.controle.evenementEntreeJeu(this.txtIp.getText());
 	}
 	/**
 	 * Create the frame.
 	 */
-	public EntreeJeu() {
+	public EntreeJeu(Controle controle) {
 		setTitle("Urban Marginal");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,6 +117,9 @@ public class EntreeJeu extends JFrame {
 		txtIp.setBounds(83, 110, 124, 30);
 		contentPane.add(txtIp);
 		txtIp.setColumns(10);
+		
+		//recuperation de l'instance de controle
+		this.controle = controle;
 
 	}
 }
