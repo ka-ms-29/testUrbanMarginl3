@@ -65,6 +65,16 @@ public class Controle implements AsyncResponse {
 			new ClientSocket(this, info, PORT);
 		}
 	}
+	
+	/**
+	 * information prevenant de la vue ChoixJoueur
+	 * @param pseudo
+	 * @param numPerso
+	 */
+	public void evenementChoixJoueur(String pseudo, int numPerso) {
+		this.frmChoixJoueur.dispose();
+		this.frmArene.setVisible(true);
+	}
 	@Override
 	public void reception(Connection connection, String ordre, Object info) {
 		switch (ordre) {
@@ -72,7 +82,7 @@ public class Controle implements AsyncResponse {
 			if(this.typeJeu.equals("client")) {
 				this.frmEntreeJeu.dispose();
 				this.frmArene = new Arene();
-				this.frmChoixJoueur = new ChoixJoueur();
+				this.frmChoixJoueur = new ChoixJoueur(this);
 				this.frmChoixJoueur.setVisible(true);
 			}break;
 		case"reception":

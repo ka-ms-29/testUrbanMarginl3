@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
+import java.net.URL;
 
 public class Arene extends JFrame {
 
@@ -39,7 +40,7 @@ public class Arene extends JFrame {
 		
 		JLabel lblArena = new JLabel("");
 		String chemin = "fonds/fondarene.jpg";
-		String resource = getClass().getClassLoader().getResource(chemin).getPath();
+		URL resource = getClass().getClassLoader().getResource(chemin);
 		lblArena.setIcon(new ImageIcon(resource));
 		lblArena.setBounds(10, 10, 800, 600);
 		contentPane.add(lblArena);
